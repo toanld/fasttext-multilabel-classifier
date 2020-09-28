@@ -94,7 +94,7 @@ class ClassifierResource:
                 'scores': scores
             })
         resp.media = results
-        
+
     def on_get(self, req, resp):
         """Handles GET requests"""
         quote = {
@@ -123,7 +123,7 @@ def create_app(progname, model_dir, port):
             os.path.join(model_dir, MODEL_BIN))
         app = falcon.API()
         app.add_route(
-            '/classifier', ClassifierResource(logger, classifier, TOP_LABELS))
+            '/nlp/classifier', ClassifierResource(logger, classifier, TOP_LABELS))
     except Exception as e:
         logger.error('Failed to initialize with model directory {}: {}'.format(
             model_dir, e))
