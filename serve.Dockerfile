@@ -25,6 +25,6 @@ RUN apk add --update \
 
 ENV MODEL_DIR=/model
 ENV SRC_DIR=/srv
-ENV PORT=8000
+ENV PORT=5001
 
 CMD ["/srv/serve.sh"]
