@@ -25,7 +25,7 @@ from prepro import preprocess
 from falcon.media.validators import jsonschema
 from settings import TOP_LABELS, MODEL_BIN
 
-PORT = 8000
+PORT = 5001
 
 predict_schema = {
     'title': 'Label texts',
