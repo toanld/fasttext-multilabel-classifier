@@ -64,7 +64,7 @@ docker build -f serve.Dockerfile -t classifier-serve .
 
 Run the serving container by mounting the trained model file and exposing the port:
 ```sh
-docker run -v $MODEL_DIR:/model -p 8000:8000 classifier-serve
+docker run -v $MODEL_DIR:/model -p 5001:5001 classifier-serve
 ```
 
 * `MODEL_DIR` is the full path of the directory that stores the trained model `model.bin` generated in the above step.
@@ -73,7 +73,7 @@ If you want to override the default settings with your modified settings, for ex
 
 ### Post an inference HTTP request
 
-Make an HTTP POST request to `http://localhost:8000/classifier` with a JSON body which contains the texts to be labeled, like the following (two Albert Einstein quotes):
+Make an HTTP POST request to `http://localhost:5001/classifier` with a JSON body which contains the texts to be labeled, like the following (two Albert Einstein quotes):
 ```json
 { 
    "texts":[ 
@@ -119,7 +119,7 @@ The classifier returns a list of scores for the labels, indicating the likelihoo
 
 You can test the classifier API using `curl` as follows:
 ```sh
-curl -X POST http://localhost:8000/classifier -H "Content-Type: application/json" -d $'{"texts":[{"id":0,"text":"Three great forces rule the world: stupidity, fear and greed."},{"id":1,"text":"Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That\'s relativity."}]}'
+curl -X POST http://localhost:5001/classifier -H "Content-Type: application/json" -d $'{"texts":[{"id":0,"text":"Three great forces rule the world: stupidity, fear and greed."},{"id":1,"text":"Put your hand on a hot stove for a minute, and it seems like an hour. Sit with a pretty girl for an hour, and it seems like a minute. That\'s relativity."}]}'
 ```
 
 ### Pull docker images from Docker Hub
@@ -137,7 +137,7 @@ docker run -v $TRAIN_DIR:/train -v $MODEL_DIR:/model yamai/fasttext-multilabel-c
 ```
 or
 ```sh
-docker run -v $MODEL_DIR:/model -p 8000:8000 yamai/fasttext-multilabel-classifier:serve-latest
+docker run -v $MODEL_DIR:/model -p 5001:5001 yamai/fasttext-multilabel-classifier:serve-latest
 ```
 
 ## Profesional services
